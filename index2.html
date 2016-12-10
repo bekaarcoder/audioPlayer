@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<body>
+
+<div ng-app="myApp" ng-controller="MyCtrl">
+ 
+<button ngf-select="myFunction($files)" multiple>Choose Files</button>
+
+<p id="demo" ng-repeat="file in fileList">
+	Name: {{file.name}} </br>
+    Type: {{file.type}} </br>
+</p>
+{{fileList}}
+
+</div>
+<script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload-shim.js"></script>
+<script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
+<script>
+var app = angular.module('myApp', ['ngFileUpload']);
+
+app.controller('MyCtrl', ['$scope', function($scope){
+	$scope.myFunction = function(files){
+	    $scope.fileList = files;
+	    console.log($scope.fileList);
+	};
+}]);
+
+</script>
+</body>
+</html>
